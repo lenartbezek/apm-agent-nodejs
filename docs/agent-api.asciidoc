@@ -952,6 +952,24 @@ In most cases this isn't needed though,
 as the agent is pretty smart at figuring out if your Node.js app is an HTTP server and if an error occurred during an incoming request.
 In which case it will automate this processes for you.
 
+[[error-id]]
+===== Error ID
+
+You can override the error id by using the `options` argument with an `id` field set.
+Only strings are accepted, otherwise default uuid.v4 is used.
+
+This is useful if you want to keep track of the id somewhere else in the application,
+for example sending it back to the client together with the error response.
+
+[source,js]
+----
+var errorId = uuid.v4()
+
+apm.captureError(err, {
+  id: errorId // a string
+})
+----
+
 [[apm-middleware-connect]]
 ==== `apm.middleware.connect()`
 
